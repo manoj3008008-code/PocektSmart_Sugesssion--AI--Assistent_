@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Jewelry Planner{% endblock %}
+{% block content %}
+<div class="section-head"><div><p class="eyebrow">JEWELRY PLANNER</p><h1>Match the occasion</h1><p class="muted">Optionally upload an outfit image for multimodal style analysis.</p></div></div>
+<form id="jewelryForm" class="panel planner-form" enctype="multipart/form-data">
+<label>Budget (₹)<input name="budget" type="number" min="1" required value="5000"></label>
+<label>Occasion<input name="occasion" value="Wedding" required></label>
+<label>Style<select name="style"><option>elegant</option><option>minimal</option><option>traditional</option><option>statement</option></select></label>
+<label>Outfit color<input name="outfit_color" placeholder="e.g. navy blue"></label>
+<label>Outfit notes<textarea name="outfit_notes" placeholder="Optional description"></textarea></label>
+<label>Outfit image<input name="outfit_image" type="file" accept="image/*"></label>
+<button class="btn primary" type="submit">Generate Jewelry Plan</button>
+</form><div id="result"></div>
+{% endblock %}
+{% block scripts %}<script>bindPlanner("jewelryForm","/api/generate-jewelry","jewelry");</script>{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}History{% endblock %}
+{% block content %}
+<section class="section-head"><div><p class="eyebrow">HISTORY</p><h1>Your recommendation history</h1></div></section>
+<div id="historyList" class="panel">Loading…</div>
+{% endblock %}
+{% block scripts %}
+<script>
+(async()=>{const r=await api("/api/history"); if(r.detail){location="/login";return}
+const box=document.querySelector("#historyList");
+box.innerHTML=r.items.length?r.items.map(x=>`<article class="history-card"><b>${x.planner.toUpperCase()}</b><span>${new Date(x.created_at).toLocaleString()}</span><p>${x.response.summary||""}</p></article>`).join(""):"No saved recommendations yet.";})();
+</script>
+{% endblock %}

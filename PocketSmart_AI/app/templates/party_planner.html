@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Party Planner{% endblock %}
+{% block content %}
+<div class="section-head"><div><p class="eyebrow">PARTY PLANNER</p><h1>Plan the event</h1><p class="muted">Allocate your budget across food, venue and decoration.</p></div></div>
+<form id="partyForm" class="panel planner-form">
+<label>Total budget (₹)<input name="budget" type="number" min="1" required value="30000"></label>
+<label>Guest count<input name="guests" type="number" min="1" required value="30"></label>
+<label>Event type<input name="event_type" value="Birthday" required></label>
+<label>Venue preference<input name="venue" value="flexible"></label>
+<label>City<input name="city" value="Chennai"></label>
+<label>Food preference<input name="food_preference" value="mixed"></label>
+<button class="btn primary" type="submit">Generate Party Plan</button>
+</form><div id="result"></div>
+{% endblock %}
+{% block scripts %}<script>bindPlanner("partyForm","/api/generate-party","party");</script>{% endblock %}

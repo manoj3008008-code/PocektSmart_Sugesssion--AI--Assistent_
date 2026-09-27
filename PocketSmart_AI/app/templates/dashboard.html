@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Dashboard · PocketSmart AI{% endblock %}
+{% block content %}
+<section class="section-head"><div><p class="eyebrow">DASHBOARD</p><h1 id="hello">PocketSmart AI</h1><p class="muted">Choose a planner and turn your budget into a practical starting plan.</p></div><button class="btn" onclick="logout()">Logout</button></section>
+<div class="cards">
+<a class="card" href="/planner/home"><b>🏠 Home</b><p>Furniture, lighting, decor.</p></a>
+<a class="card" href="/planner/party"><b>🎉 Party</b><p>Food, venue, decoration.</p></a>
+<a class="card" href="/planner/jewelry"><b>💎 Jewelry</b><p>Occasion and outfit matching.</p></a>
+</div>
+<section class="panel"><h2>Recent recommendations</h2><div id="recent">Loading…</div></section>
+{% endblock %}
+{% block scripts %}
+<script>
+(async()=>{const r=await api("/api/session-info"); if(!r.logged_in){location="/login";return} document.querySelector("#hello").textContent="Hi, "+r.user.name+" 👋"; const h=await api("/api/history"); const box=document.querySelector("#recent"); box.innerHTML=h.items.length?h.items.slice(0,5).map(x=>`<div class="history-row"><b>${x.planner.toUpperCase()}</b><span>${new Date(x.created_at).toLocaleString()}</span></div>`).join(""):"No recommendations yet.";})();
+</script>
+{% endblock %}

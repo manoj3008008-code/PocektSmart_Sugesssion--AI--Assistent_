@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Register · PocketSmart AI{% endblock %}
+{% block content %}
+<div class="form-wrap"><form id="registerForm" class="panel">
+<h1>Create account</h1><p class="muted">Your recommendation history stays associated with your account.</p>
+<label>Name<input name="name" required minlength="2"></label>
+<label>Email<input name="email" type="email" required></label>
+<label>Password<input name="password" type="password" minlength="6" required></label>
+<button class="btn primary" type="submit">Register</button><div id="formMessage"></div>
+<p>Already registered? <a href="/login">Login</a></p>
+</form></div>
+{% endblock %}
+{% block scripts %}<script>bindJsonForm("registerForm","/api/register","/login");</script>{% endblock %}

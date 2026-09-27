@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Home Planner{% endblock %}
+{% block content %}
+<div class="section-head"><div><p class="eyebrow">HOME INTERIOR</p><h1>Build a home plan</h1><p class="muted">Add rooms and the items you want to prioritize.</p></div></div>
+<form id="homeForm" class="panel planner-form">
+<label>Total budget (₹)<input name="budget" type="number" min="1" required value="50000"></label>
+<label>Rooms<input name="rooms" value="Living Room, Bedroom" required></label>
+<label>Style<select name="style"><option>modern</option><option>minimal</option><option>traditional</option><option>industrial</option></select></label>
+<label>City<input name="city" value="Chennai"></label>
+<label>Items (JSON)<textarea name="items" required>[{"category":"lighting","item":"ceiling lights","quantity":2,"priority":"high"},{"category":"furniture","item":"study table","quantity":1,"priority":"balanced"}]</textarea></label>
+<button class="btn primary" type="submit">Generate Home Plan</button>
+</form><div id="result"></div>
+{% endblock %}
+{% block scripts %}<script>bindPlanner("homeForm","/api/generate-home","home");</script>{% endblock %}

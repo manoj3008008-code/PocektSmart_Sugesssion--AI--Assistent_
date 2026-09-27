@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Login · PocketSmart AI{% endblock %}
+{% block content %}
+<div class="form-wrap"><form id="loginForm" class="panel">
+<h1>Welcome back</h1><p class="muted">Login to save and review recommendations.</p>
+<label>Email<input name="email" type="email" required></label>
+<label>Password<input name="password" type="password" minlength="6" required></label>
+<button class="btn primary" type="submit">Login</button><div id="formMessage"></div>
+<p>New here? <a href="/register">Create an account</a></p>
+</form></div>
+{% endblock %}
+{% block scripts %}<script>bindJsonForm("loginForm","/api/login","/dashboard");</script>{% endblock %}
